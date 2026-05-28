@@ -17,7 +17,7 @@ module hazardunit(output reg IF_stall,
                   input [4:0]WB_rd,
                   input MEM_regwrite,
                   input WB_regwrite,
-                  input ID_jal,
+                  input ID_irs,//independent rs1 
                   input ID_rtype,
                   input ID_branch,
                   input MEM_jump,
@@ -47,7 +47,7 @@ begin
       EX_flush=1;
       selpc=1;
 end
-else if(EX_lw&((EX_rd==ID_rs1&(!ID_jal))|((EX_rd==ID_rs2)&(ID_rtype|ID_branch))))
+else if(EX_lw&((EX_rd==ID_rs1&(!ID_irs))|((EX_rd==ID_rs2)&(ID_rtype|ID_branch))))
 begin
       ID_flush=0;
       EX_stall=0;
