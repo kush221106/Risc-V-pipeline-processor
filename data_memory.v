@@ -3,7 +3,7 @@ reg [31:0]momory[63:0];
 integer i;
 initial 
 begin 
-for(i=0;i<256;i=i+1)
+for(i=0;i<64;i=i+1)
 momory[i]<=32'd0;
 end 
 always@(posedge clk)
