@@ -144,24 +144,12 @@ begin
     end
     else if(update_en)
     begin 
-        if(was_hit)
-        begin 
-           case(update_way_id)
-           0:plru[update_base_addr]<={2'b0,plru_value[0]};
-           1:plru[update_base_addr]<={2'b01,plru_value[0]};
-           2:plru[update_base_addr]<={1'b1,plru_value[1],1'b0};
-           3:plru[update_base_addr]<={1'b1,plru_value[1],1'b1};
-           endcase
-        end
-        else 
-        begin 
-           case(victim_way)
-           0:plru[update_base_addr]<={2'b0,plru_value[0]};
-           1:plru[update_base_addr]<={2'b01,plru_value[0]};
-           2:plru[update_base_addr]<={1'b1,plru_value[1],1'b0};
-           3:plru[update_base_addr]<={1'b1,plru_value[1],1'b1};
-           endcase
-        end
+        case(update_path)
+            0: plru[update_base_addr] <= {2'b0,  plru_value[0]};
+            1: plru[update_base_addr] <= {2'b01, plru_value[0]};
+            2: plru[update_base_addr] <= {1'b1,  plru_value[1], 1'b0};
+            3: plru[update_base_addr] <= {1'b1,  plru_value[1], 1'b1};
+        endcase
     end
     else if(hit)
     begin 
